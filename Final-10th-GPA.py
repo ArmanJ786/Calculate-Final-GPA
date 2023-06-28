@@ -49,7 +49,7 @@ def lessons(chn, rn, mn, phn, l1, l2, l3, l4, l5, l6 ):
     chemistry = float(input("Enter the grade of the chemistry course: ")) * chn
     religious = float(input("Enter the grade of the religious course: ")) * rn
     physics = float(input("Enter the grade of the physics course: ")) * phn
-    farsi = float(input("Enter the grade of the farsi course: ")) * 2
+    literature = float(input("Enter the grade of the literature course: ")) * 2
     arabic = float(input("Enter the grade of the arabic course: ")) * 2
     essay = float(input("Enter the grade of the essay course: ")) * 2
     physical_education = float(input("Enter the grade of the P.E course: ")) * 2
@@ -60,7 +60,10 @@ def lessons(chn, rn, mn, phn, l1, l2, l3, l4, l5, l6 ):
     defense_readiness = float(input("Enter the grade of the defense readiness course: ")) * 3
     geography = float(input("Enter the grade of the geography course: ")) * 2
 
-    final_GPA  = l1 + l2 + l3 + l4 + l5 + l6 + math + chemistry + religious + physics + farsi + arabic + physical_education + science + discipline + media_literacy + english_language + defense_readiness + geography
+    if math/mn or chemistry/chn or religious/rn or physics/phn or literature/2 or arabic/2 or essay/2 or physical_education/2 or science/2 or discipline/2 or media_literacy/2 or english_language/3 or defense_readiness/3 or geography/2 > 20: 
+        main()
+
+    final_GPA  = l1 + l2 + l3 + l4 + l5 + l6 + math + chemistry + religious + physics + literature + essay + arabic + physical_education + science + discipline + media_literacy + english_language + defense_readiness + geography
     print(f"Your final GPA grade is: {final_GPA / 37}")
 
 
