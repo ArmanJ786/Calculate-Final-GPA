@@ -12,59 +12,64 @@ def main():
     if entery == "Mathematic":
         geometry = float(input("Enter the grade of the geometry course: ")) * 2
         if geometry/2 > 20:
-            print("Error!!")
+            print("Login Error:\nYou must enter a valid numeric value.\n")
             main()
-        lessons(3,3,4,4, geometry, 0, 0, 0, 0, 0)
+
+        lessons(3,3,4,4, geometry)
 
 
     elif entery == "Science":
         biology = float(input("Enter the grade of the biology course: ")) * 3
         if biology/3 > 20 :
-            print("Error!!")
+            print("Login Error:\nYou must enter a valid numeric value.\n")
             main()
-        lessons(3,3,4,3, biology, 0, 0, 0, 0, 0)
+
+        lessons(3,3,4,3, biology)
 
 
     elif entery == "Humanities":
-        history = float(input("Enter the grade of the history course: ")) * 3
-        mathematics_and_statistics = float(input("Enter the grade of the Mathematics and statistics course: ")) * 3
-        economy = float(input("Enter the grade of the economy course: ")) * 2
-        literary_sciences_and_techniques = float(input("Enter the grade of the literary sciences and techniques course: ")) * 2
-        sociology = float(input("Enter the grade of the sociology course: ")) * 2
-        logic = float(input("Enter the grade of the logic course: ")) * 2
-        if history/3 or sociology/2 or logic/2 or literary_sciences_and_techniques/2 or economy/2 or mathematics_and_statistics/3> 20:
-            print("Error!!")
+        l1 = lesson('history', 'mathematics and statistics', 3, 3)
+        l2 = lesson('economy', 'literary sciences and techniques', 2, 2)
+        l3 = lesson('sociology', 'logic', 2, 2)
+
+        if l1/6 or l2/4 or l3/4 > 20:
+            print("Login Error:\nYou must enter a valid numeric value.\n")
             main()
 
-        lessons(0,3,0,0 ,history, mathematics_and_statistics, economy, sociology, literary_sciences_and_techniques, logic)
+        SCH = l1 + l2 + l3
+        lessons(0,3,0,0 ,SCH)
 
     else:
-        print("Error!!")
+        print("Please enter your field of study.\n")
+        main()
+
+def lesson(name, name2, Coefficient, Coefficient2):
+    try:
+        lesson = float(input(f"Enter the grade of the {name} course: ")) * Coefficient
+        lesson2 = float(input(f"Enter the grade of the {name2} course: ")) * Coefficient2
+        return lesson + lesson2
+    except ValueError:
+        print("Login Error:\nYou must enter a valid numeric value.\n")
         main()
 
 
-def lessons(chn, rn, mn, phn, l1, l2, l3, l4, l5, l6 ):
+def lessons(chn, rn, mn, phn, Specialized_courses):
 
-    math = float(input("Enter the grade of the math course: ")) * mn
-    chemistry = float(input("Enter the grade of the chemistry course: ")) * chn
-    religious = float(input("Enter the grade of the religious course: ")) * rn
-    physics = float(input("Enter the grade of the physics course: ")) * phn
-    literature = float(input("Enter the grade of the literature course: ")) * 2
-    arabic = float(input("Enter the grade of the arabic course: ")) * 2
-    essay = float(input("Enter the grade of the essay course: ")) * 2
-    physical_education = float(input("Enter the grade of the P.E course: ")) * 2
-    science = float(input("Enter the grade of the science course: ")) * 2
-    discipline = float(input("Enter the grade of the discipline: ")) * 2
-    media_literacy = float(input("Enter the grade of the medialiteracy course: ")) * 2
-    english_language = float(input("Enter the grade of the english course: ")) * 3
-    defense_readiness = float(input("Enter the grade of the defense readiness course: ")) * 3
-    geography = float(input("Enter the grade of the geography course: ")) * 2
+    l1 = lesson('math', 'chemistry', mn, chn)
+    l2 = lesson('religious', 'physics', rn, phn)
+    l3 = lesson('literature', 'arabic', 2, 2)
+    l4 = lesson('essay', 'P.E', 2, 2)
+    l5 = lesson('science', 'discipline', 2, 2)
+    l6 = lesson('media literacy', 'english', 2, 3)
+    l7 = lesson('defense readiness', 'geography', 3, 2)
 
-    if math/mn or chemistry/chn or religious/rn or physics/phn or literature/2 or arabic/2 or essay/2 or physical_education/2 or science/2 or discipline/2 or media_literacy/2 or english_language/3 or defense_readiness/3 or geography/2 > 20: 
+
+    final_GPA  = Specialized_courses + l1 + l2 + l3 + l4 + l5 + l6 + l7
+    if final_GPA / 37 <= 20:
+        print(f"Your final GPA grade is: {final_GPA / 37}")
+    else:
+        print("Output error:\nThe value of your GPA number is greater than the specified range.\n")
         main()
-
-    final_GPA  = l1 + l2 + l3 + l4 + l5 + l6 + math + chemistry + religious + physics + literature + essay + arabic + physical_education + science + discipline + media_literacy + english_language + defense_readiness + geography
-    print(f"Your final GPA grade is: {final_GPA / 37}")
 
 
 main()
